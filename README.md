@@ -40,3 +40,40 @@ const f2 = f1();
 console.log(f2);
 console.log(f2());
 ```
+
+## 고차 함수
+
+- 함수를 값으로 다루는 함수
+
+### 함수를 인자로 받아서 실행하는 함수
+
+- apply1
+- times
+
+```js
+const apply1 = f => f(1);
+const add2 = a => a + 2;
+console.log(apply1(add2));	// 3
+console.log(apply1(a => a - 1));	// 0
+```
+
+```js
+const times = (f, n) => {
+	let i = -1;
+	while (++i < n) f(i);
+}
+times(console.log, 3); // 0부터 2까지 순차적으로 출력
+times(a=>console.log(a+10), 3);	// 	10부터 12까지 순차적으로 출력
+```
+
+
+## 함수를 만들어 리턴하는 함수 (클로저를 만들어서 리턴하는 함수)
+
+- addMaker
+
+```js
+const addMaker = a => b => a + b;
+const add10 = addMaker(10);
+console.log(add10(5));	// 15
+console.log(add10(10));	// 20
+```
