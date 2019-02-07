@@ -25,3 +25,18 @@ const add10 = a => a + 10;
 const r = add10(a);
 console.log(r);	// 20
 ```
+
+## 일급 함수
+
+```js
+const add5 = a => a + 5;
+console.log(add5);
+console.log(add5(5));
+
+const f1 = () => () => 1;
+console.log(f1());
+
+const f2 = f1();
+console.log(f2);
+console.log(f2());
+```
