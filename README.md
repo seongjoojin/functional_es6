@@ -20,25 +20,27 @@
 - 조합성과 추상화의 도구
 
 ```js
+const log = console.log;
 const a = 10;
 const add10 = a => a + 10;
 const r = add10(a);
-console.log(r);	// 20
+log(r);	// 20
 ```
 
 ## 일급 함수
 
 ```js
+const log = console.log;
 const add5 = a => a + 5;
-console.log(add5);
-console.log(add5(5));
+log(add5);
+log(add5(5));
 
 const f1 = () => () => 1;
-console.log(f1());
+log(f1());
 
 const f2 = f1();
-console.log(f2);
-console.log(f2());
+log(f2);
+log(f2());
 ```
 
 ## 고차 함수
@@ -51,29 +53,73 @@ console.log(f2());
 - times
 
 ```js
+const log = console.log;
 const apply1 = f => f(1);
 const add2 = a => a + 2;
-console.log(apply1(add2));	// 3
-console.log(apply1(a => a - 1));	// 0
+log(apply1(add2));	// 3
+log(apply1(a => a - 1));	// 0
 ```
 
 ```js
+const log = console.log;
 const times = (f, n) => {
 	let i = -1;
 	while (++i < n) f(i);
 }
-times(console.log, 3); // 0부터 2까지 순차적으로 출력
-times(a=>console.log(a+10), 3);	// 	10부터 12까지 순차적으로 출력
+times(log, 3); // 0부터 2까지 순차적으로 출력
+times(a=>log(a+10), 3);	// 	10부터 12까지 순차적으로 출력
 ```
 
 
-## 함수를 만들어 리턴하는 함수 (클로저를 만들어서 리턴하는 함수)
+### 함수를 만들어 리턴하는 함수 (클로저를 만들어서 리턴하는 함수)
 
 - addMaker
 
 ```js
+const log = console.log;
 const addMaker = a => b => a + b;
 const add10 = addMaker(10);
-console.log(add10(5));	// 15
-console.log(add10(10));	// 20
+log(add10(5));	// 15
+log(add10(10));	// 20
 ```
+
+## 기존과 달라진 ES6에서의 리스트 순회
+
+- for i++
+- for of
+
+```js
+const log = console.log;
+const list = [1, 2, 3];
+for(var i = 0; i < list.length; i++) {
+	log(list[i]);
+	// 1
+	// 2
+	// 3
+}
+const str = 'abc';
+for(var i = 0; i < str.length; i++) {
+	log(str[i]);
+	// a
+	// b
+	// c
+}
+```
+
+```js
+const log = console.log;
+const list = [1, 2, 3];
+const str = 'abc';
+for (const a of list) {
+	log(a);
+} 
+for (const a of str) {
+	log(a);
+} 
+```
+
+### Array 통해 알아보기
+
+### Set을 통해 알아보기
+
+### Map을 통해 알아보기
